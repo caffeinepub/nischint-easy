@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build “Smart Earning Hub” app (web implementation of the described multi-screen login/learning/earning/form/support app) with simple credential-gated admin features.",
+  "architectural_notes": [
+    "Implement an admin gate: allow only usernames Abhishek/Adarsh with a separate admin password (12345) to access Analytics and Form Submissions views."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-update-the-registration-form-so-that-a-successful-submit-also-sends-the-entered-form-data-to-the-backend-for-storage-in-addition-to-the-current-success-confirmation-ui",
+      "title": "Update the registration form so that a successful submit also sends the entered form data to the backend for storage (in addition to the current success confirmation UI).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-two-admin-only-ui-entry-points-buttons-within-only-the-user-selected-elements-the-four-provided-xpaths-to-access-1-analytics-and-2-registration-details-each-entry-point-must-require-entering-username-must-be-exactly-abhishek-or-adarsh-and-password-must-be-exactly-12345-before-the-admin-view-is-shown",
+      "title": "Add two admin-only UI entry points (buttons) within ONLY the user-selected elements (the four provided XPaths) to access: (1) Analytics and (2) Registration Details. Each entry point must require entering username (must be exactly Abhishek or Adarsh) and password (must be exactly 12345) before the admin view is shown.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-analytics-admin-view-that-is-accessible-only-after-successful-credential-entry-and-displays-stored-form-analytics-computed-from-backend-data",
+      "title": "Create an Analytics admin view that is accessible only after successful credential entry and displays stored-form analytics computed from backend data.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-registration-details-admin-view-that-is-accessible-only-after-successful-credential-entry-and-displays-a-readable-list-table-of-all-stored-registration-submissions-who-filled-the-form-and-their-details",
+      "title": "Create a Registration Details admin view that is accessible only after successful credential entry and displays a readable list/table of all stored registration submissions (who filled the form and their details).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add admin-only Analytics button/section accessible only for users Abhishek and Adarsh after entering password 12345.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add admin-only button/section (protected by password 12345) to view who filled the form and see stored registered details/submissions.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement backend persistence for registration submissions so the app can store and later retrieve who filled the form and their submitted details.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Smart Earning Hub",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

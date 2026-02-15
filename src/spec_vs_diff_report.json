@@ -1,0 +1,104 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T22:13:36.216Z",
+  "summary": "Core admin pages, credential dialog, and backend endpoints were added, but several BuildRequest requirements are not met: the backend data model/persistence does not match required fields, the registration UI lacks clear failure messaging, admin views can be accessed without the credential gate (via direct URL), and the admin entry buttons were added globally (fixed bottom-right) rather than being confined to the four XPath-selected elements. Additionally, multiple unrelated frontend rebrand/UI changes were introduced.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Backend data model for a registration submission must include at minimum: fullName, mobileNumber, email, age, city, education, skills, hasDevice, experience, createdAt; store submissions persistently and list most-recent-first.",
+      "reason": "The backend stores a different shape (name/phone/university/major/year/skillLevel/interests) and does not include required fields like createdAt, hasDevice, experience as distinct fields, nor does it demonstrate most-recent-first ordering.",
+      "evidence": [
+        "backend/main.mo",
+        "backend/migration.mo",
+        "frontend/src/pages/WorkFromHomeRegistration.tsx"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Backend persistence for submissions (so they can be stored and later retrieved).",
+      "reason": "The diff shows `let registrations = List.empty<RegistrationForm>();` and uses `registrations.add(form);` without any visible stable variable or persistent structure; based on the summary alone, persistence across upgrades/restarts is not evidenced.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "If the backend save fails, the UI shows a clear error and does not show the success confirmation state.",
+      "reason": "The registration submit catch block only logs to console; no clear error alert/state is shown to the user in the provided snippet.",
+      "evidence": [
+        "frontend/src/pages/WorkFromHomeRegistration.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Add two admin-only UI entry points (buttons) placed by editing ONLY the four selected DOM elements identified by provided XPaths.",
+      "reason": "Admin buttons were added as a fixed-position container in `App.tsx`, not confined to XPath-selected elements (the XPaths are not referenced at all in the diff).",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Analytics view is not accessible without passing the credential gate in REQ-3.",
+      "reason": "Routing logic sets `currentPage` directly from URL (`/admin/analytics`) in `handlePopState` without checking authorization; thus the view can be displayed via direct navigation.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Registration Details view is not accessible without passing the credential gate in REQ-3.",
+      "reason": "Routing logic sets `currentPage` directly from URL (`/admin/registrations`) in `handlePopState` without checking authorization; thus the view can be displayed via direct navigation.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "App rebrand/UI changes (e.g., \"Learning-Earning\" title/logo updates).",
+      "reason": "Not requested by the BuildRequest, which is focused on admin analytics/details and backend persistence.",
+      "evidence": [
+        "frontend-file-summaries.txt (frontend/src/components/TopNav.tsx, frontend/index.html)"
+      ]
+    },
+    {
+      "description": "New/updated marketing content sections (ServicesGrid, WhyChooseMe, QuoteCallout) and other non-admin UI enhancements.",
+      "reason": "Not part of the requested admin analytics/registration viewer feature set.",
+      "evidence": [
+        "frontend-file-summaries.txt (frontend/src/components/ServicesGrid.tsx, frontend/src/components/WhyChooseMe.tsx, frontend/src/components/QuoteCallout.tsx)"
+      ]
+    },
+    {
+      "description": "Contact section text changes (e.g., age requirement text updated to minimum age 14+).",
+      "reason": "Not requested in the BuildRequest.",
+      "evidence": [
+        "frontend-file-summaries.txt (frontend/src/components/ContactSection.tsx)"
+      ]
+    },
+    {
+      "description": "Adding a migration module that initializes an unrelated/older RegistrationForm shape.",
+      "reason": "BuildRequest allows adding migration.mo only if an upgrade requires it; the diff provides no evidence that an upgrade/migration was required, and the migration schema does not match the requested submission fields.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AdminCredentialDialog.tsx",
+    "frontend/src/hooks/useAdminGate.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/AdminAnalytics.tsx",
+    "frontend/src/pages/AdminRegistrationDetails.tsx",
+    "frontend/src/pages/WorkFromHomeRegistration.tsx",
+    "project_state.json"
+  ]
+}

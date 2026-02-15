@@ -1,0 +1,97 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T22:13:36.219Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Implement backend persistence for registration submissions so the app can store and later retrieve who filled the form and their submitted details.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Update the registration form so that a successful submit also sends the entered form data to the backend for storage (in addition to the current success confirmation UI).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/WorkFromHomeRegistration.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/WorkFromHomeRegistration.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add two admin-only UI entry points (buttons) within ONLY the user-selected elements (the four provided XPaths) to access: (1) Analytics and (2) Registration Details. Each entry point must require entering username (must be exactly Abhishek or Adarsh) and password (must be exactly 12345) before the admin view is shown.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AdminCredentialDialog.tsx",
+          "frontend/src/hooks/useAdminGate.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AdminCredentialDialog.tsx",
+          "frontend/src/hooks/useAdminGate.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Create an Analytics admin view that is accessible only after successful credential entry and displays stored-form analytics computed from backend data.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AdminAnalytics.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AdminAnalytics.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Create a Registration Details admin view that is accessible only after successful credential entry and displays a readable list/table of all stored registration submissions (who filled the form and their details).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AdminRegistrationDetails.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AdminRegistrationDetails.tsx",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/AdminCredentialDialog.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useAdminGate.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/AdminAnalytics.tsx",
+    "frontend/src/pages/AdminRegistrationDetails.tsx",
+    "frontend/src/pages/WorkFromHomeRegistration.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

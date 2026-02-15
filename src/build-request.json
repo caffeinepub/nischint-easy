@@ -1,0 +1,126 @@
+{
+  "kind": "build_request",
+  "title": "Add password-protected admin Analytics and Registration Viewer for Abhishek/Adarsh",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement backend persistence for registration submissions so the app can store and later retrieve who filled the form and their submitted details.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Add button to see analytics only Abhishek and adarsh with password entered after password is 12345 and second edit put button to see by enter same password to see who fill form and register details of person"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A Motoko data model exists for a registration submission (at minimum: fullName, mobileNumber, email, age, city, education, skills, hasDevice, experience, createdAt).",
+        "Backend exposes a function to create/save a submission from the registration form.",
+        "Backend exposes a function to list submissions for admin viewing (most-recent-first).",
+        "Backend exposes a function to return basic analytics derived from stored submissions (at minimum: total submission count)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Update the registration form so that a successful submit also sends the entered form data to the backend for storage (in addition to the current success confirmation UI).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "...see who fill form and register details of person"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting the form triggers a backend call to persist the submission when validation passes.",
+        "If the backend save fails, the UI shows a clear error and does not show the success confirmation state.",
+        "If the backend save succeeds, the existing success confirmation UI is shown."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add two admin-only UI entry points (buttons) within ONLY the user-selected elements (the four provided XPaths) to access: (1) Analytics and (2) Registration Details. Each entry point must require entering username (must be exactly Abhishek or Adarsh) and password (must be exactly 12345) before the admin view is shown.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Add button to see analytics only Abhishek and adarsh with password entered after password is 12345",
+          "put button to see by enter same password to see who fill form and register details of person"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Two distinct buttons/controls exist (one for Analytics, one for Registration Details) and are placed by editing only the four selected DOM elements identified by the provided XPaths.",
+        "Clicking either button prompts for credentials (username + password).",
+        "If username is not Abhishek or Adarsh, access is denied and the admin view is not displayed.",
+        "If password is not 12345, access is denied and the admin view is not displayed.",
+        "If correct credentials are provided, the requested admin view is displayed."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create an Analytics admin view that is accessible only after successful credential entry and displays stored-form analytics computed from backend data.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Add button to see analytics ..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Analytics view fetches analytics from the backend and renders at least: total number of submissions.",
+        "Analytics view handles loading and error states gracefully.",
+        "Analytics view is not accessible without passing the credential gate in REQ-3."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Create a Registration Details admin view that is accessible only after successful credential entry and displays a readable list/table of all stored registration submissions (who filled the form and their details).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "...see who fill form and register details of person"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Registration Details view fetches the submission list from the backend and displays the captured fields for each submission.",
+        "View includes clear empty-state messaging when no submissions exist.",
+        "View handles loading and error states gracefully.",
+        "View is not accessible without passing the credential gate in REQ-3."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend changes to place the new admin buttons/controls must be applied ONLY to the four selected elements identified by the provided XPaths in the user prompt.",
+    "Do not edit any files under frontend/src/components/ui or any other path listed in frontend.immutablePaths.",
+    "Backend must remain a single Motoko actor in backend/main.mo; add backend/migration.mo only if an upgrade requires it."
+  ],
+  "nonGoals": [
+    "Implementing strong/cryptographic authentication or Internet Identity-based admin authorization for these admin views.",
+    "Adding ads/AdMob, APK generation, or mobile-app-specific features.",
+    "Real-time updates or push notifications for new submissions."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

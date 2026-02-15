@@ -1,0 +1,17 @@
+{
+  "frontend/src/index.css": "Global styles with OKLCH-based blue/white color system for light and dark modes, smooth scroll behavior, and custom font configuration for the student-focused design.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending the theme with blue-focused color palette, custom shadows including blue-glow effect, Inter font family, and fade-in animation for modern UI interactions.",
+  "frontend/src/App.tsx": "Main application component with client-side routing for home, registration, and two password-gated admin pages (Analytics and Registration Details), featuring fixed admin access buttons in the bottom-right corner.",
+  "frontend/src/components/TopNav.tsx": "Fixed navigation header with rebranded \"Learning-Earning\" logo and text, smooth-scrolling section links, mobile hamburger menu, and prominent \"Register Now\" button that navigates to the registration page.",
+  "frontend/src/components/ServicesGrid.tsx": "Grid component displaying four service cards (Online Earning, Skill Development, Study Strategy, Career Roadmap) with gradient icons and hover animations.",
+  "frontend/src/components/WhyChooseMe.tsx": "Component showcasing four key benefits (simple guidance, student-friendly, real-life ideas, step-by-step support) in a responsive grid with icons and descriptions.",
+  "frontend/src/components/ContactSection.tsx": "Contact section with email and WhatsApp cards featuring gradient backgrounds, icons, and prominent call-to-action buttons, with updated age requirement text stating minimum age 14+ and no bonding commitment.",
+  "frontend/src/components/QuoteCallout.tsx": "Reusable motivational quote component with decorative quotation marks, centered text, and author attribution for inspirational content between sections.",
+  "frontend/index.html": "HTML entry point with updated document title to \"Learning-Earning\" for the rebrand.",
+  "frontend/src/pages/WorkFromHomeRegistration.tsx": "Registration form page with backend integration that submits validated form data to the backend, displays loading states during submission, and shows error alerts if submission fails.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend integration including mutations for submitting registrations and queries for fetching all registrations and analytics data.",
+  "frontend/src/hooks/useAdminGate.ts": "Custom hook managing admin authentication state with validation logic for usernames (Abhishek/Adarsh) and password (12345).",
+  "frontend/src/components/AdminCredentialDialog.tsx": "Reusable dialog component for collecting and validating admin credentials with error handling and form submission.",
+  "frontend/src/pages/AdminAnalytics.tsx": "Admin-only analytics dashboard page displaying total registration count with loading, error, and data states using backend queries.",
+  "frontend/src/pages/AdminRegistrationDetails.tsx": "Admin-only page displaying all registration submissions in a table format with loading, error, and empty states."
+}

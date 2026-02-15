@@ -1,0 +1,94 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Password-gated admin Analytics and Registration Details views with backend submission calls",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Persist registration submissions by sending validated form data to the backend and showing success/error states accordingly.",
+      "acceptanceCriteria": [
+        "Submitting the form triggers a backend call to persist the submission when validation passes.",
+        "If the backend save fails, the UI shows a clear error and does not show the success confirmation state.",
+        "If the backend save succeeds, the existing success confirmation UI is shown."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/WorkFromHomeRegistration.tsx",
+          "operation": "modify",
+          "description": "Wire form submission to the backend by using the existing useActor hook to call the backend capability for saving registrations; add async submit/loading state and an error Alert state so success UI only renders after the backend call succeeds. Map current form fields into the backend RegistrationForm shape (e.g., name<-fullName, phone<-mobileNumber, email<-email, and fold remaining fields into major/university/year/skillLevel/interests as appropriate)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add two admin-only entry buttons (Analytics, Registration Details) placed only in the four user-specified DOM locations, each protected by a username+password credential prompt.",
+      "acceptanceCriteria": [
+        "Two distinct buttons/controls exist (one for Analytics, one for Registration Details) and are placed by editing only the four selected DOM elements identified by the provided XPaths.",
+        "Clicking either button prompts for credentials (username + password).",
+        "If username is not Abhishek or Adarsh, access is denied and the admin view is not displayed.",
+        "If password is not 12345, access is denied and the admin view is not displayed.",
+        "If correct credentials are provided, the requested admin view is displayed."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AdminCredentialDialog.tsx",
+          "operation": "create",
+          "description": "Create a reusable credential prompt dialog that collects username and password, validates username ∈ {Abhishek, Adarsh} and password === 12345, and returns an allow/deny result. Use shadcn-ui Dialog/Input/Button components to render the prompt UI (verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminGate.ts",
+          "operation": "create",
+          "description": "Create a small hook to manage admin-gate state for this session (e.g., in-memory or sessionStorage) and to centralize validation logic so admin views are consistently protected."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add two admin entry controls (Analytics and Registration Details) by editing ONLY the four selected DOM elements identified by the provided XPaths (do not introduce additional placement edits elsewhere). Wire each control to open AdminCredentialDialog and, on successful credentials, navigate to the corresponding admin view route/state."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement an Analytics admin view that is credential-gated and displays backend-derived analytics with loading/error states.",
+      "acceptanceCriteria": [
+        "Analytics view fetches analytics from the backend and renders at least: total number of submissions.",
+        "Analytics view handles loading and error states gracefully.",
+        "Analytics view is not accessible without passing the credential gate in REQ-3."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminAnalytics.tsx",
+          "operation": "create",
+          "description": "Create the Analytics admin view: use the existing useActor hook to fetch analytics from the backend capability and render at least total submissions; include explicit loading and error UI states. Use shadcn-ui components (e.g., Card/Alert/Button) as needed for consistent styling (verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Analytics view into the app navigation (route/state based on the existing pushState/popstate approach) and enforce the credential gate using useAdminGate so the view cannot be shown unless authorized."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement a Registration Details admin view that is credential-gated and displays a readable list/table of stored submissions with loading/error/empty states.",
+      "acceptanceCriteria": [
+        "Registration Details view fetches the submission list from the backend and displays the captured fields for each submission.",
+        "View includes clear empty-state messaging when no submissions exist.",
+        "View handles loading and error states gracefully.",
+        "View is not accessible without passing the credential gate in REQ-3."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminRegistrationDetails.tsx",
+          "operation": "create",
+          "description": "Create the Registration Details admin view: use the existing useActor hook to fetch all registrations from the backend capability and render them in a readable table/list, with explicit loading, error, and empty states. Use shadcn-ui Table/Alert/Card components where appropriate (verify the component's usage instructions before implementing)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Registration Details view into the app navigation (route/state based on the existing pushState/popstate approach) and enforce the credential gate using useAdminGate so the view cannot be shown unless authorized."
+        }
+      ]
+    }
+  ]
+}

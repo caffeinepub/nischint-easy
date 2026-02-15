@@ -1,0 +1,81 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-registration-form-so-that-a-successful-submit-also-sends-the-entered-form-data-to-the-backend-for-storage-in-addition-to-the-current-success-confirmation-ui",
+      "featureTitle": "Update the registration form so that a successful submit also sends the entered form data to the backend for storage (in addition to the current success confirmation UI).",
+      "files": [
+        "frontend/src/pages/WorkFromHomeRegistration.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-two-admin-only-ui-entry-points-buttons-within-only-the-user-selected-elements-the-four-provided-xpaths-to-access-1-analytics-and-2-registration-details-each-entry-point-must-require-entering-username-must-be-exactly-abhishek-or-adarsh-and-password-must-be-exactly-12345-before-the-admin-view-is-shown",
+      "featureTitle": "Add two admin-only UI entry points (buttons) within ONLY the user-selected elements (the four provided XPaths) to access: (1) Analytics and (2) Registration Details. Each entry point must require entering username (must be exactly Abhishek or Adarsh) and password (must be exactly 12345) before the admin view is shown.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/AdminCredentialDialog.tsx",
+        "frontend/src/hooks/useAdminGate.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-an-analytics-admin-view-that-is-accessible-only-after-successful-credential-entry-and-displays-stored-form-analytics-computed-from-backend-data",
+      "featureTitle": "Create an Analytics admin view that is accessible only after successful credential entry and displays stored-form analytics computed from backend data.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/AdminAnalytics.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-registration-details-admin-view-that-is-accessible-only-after-successful-credential-entry-and-displays-a-readable-list-table-of-all-stored-registration-submissions-who-filled-the-form-and-their-details",
+      "featureTitle": "Create a Registration Details admin view that is accessible only after successful credential entry and displays a readable list/table of all stored registration submissions (who filled the form and their details).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/AdminRegistrationDetails.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
